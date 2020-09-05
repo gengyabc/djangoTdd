@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>今日清单</title>
+</head>
+<body>
+    <h1>今日清单</h1>
+    <form method="POST" action="/lists/{{ list.id }}/items/">
+        {% csrf_token %}
+        <input type="text" id="new_item" name="new_item" placeholder='想干点啥呢'>
+    </form>
+    <table id="lists_table">
+    {% for item in list.item_set.all %}
+        <tr>
+            <td>{{ forloop.counter}}: {{ item.text }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
